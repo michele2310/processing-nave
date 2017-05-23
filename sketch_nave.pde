@@ -25,7 +25,7 @@ Nave n1, n2;
 void keyPressed() {
   if (keyCode == UP){
       n2.acelera();
-  } else if (KeyCode == DOWN) {
+  } else if (keyCode == DOWN) {
       n2.freia();
   }
 }
