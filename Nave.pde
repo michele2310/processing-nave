@@ -10,7 +10,7 @@ class Nave {
    
    public Nave(int x, int y, int r, int g, int b) {
      _posicao = new PVector(x,y);
-     _direcao = new PVector(0,-1);
+     _direcao = new PVector(1,0);
      _velocidade = 1;
      _r = r;
      _g = g;
@@ -19,8 +19,8 @@ class Nave {
    
     public Nave(int x, int y, int tam, int r, int g, int b) {
      _posicao = new PVector(x,y);
-     _direcao = new PVector(0,-1);
-     _velocidade = 1;
+     _direcao = new PVector(1,0);
+     _velocidade = 0;
      _tam = tam;
      _r = r;
      _g = g;
@@ -28,8 +28,13 @@ class Nave {
    }
    
    public void desenha() {
+     pushMatrix();
+     translate(_posicao.x, _posicao.y);
+     rotate(_direcao.heading());
      fill(_r, _g, _b);
-     triangle(_posicao.x, _posicao.y - _tam, _posicao.x + _tam, _posicao.y + _tam, _posicao.x  - _tam, _posicao.y + _tam);
+     //triangle(_posicao.x, _posicao.y - _tam, _posicao.x + _tam, _posicao.y + _tam, _posicao.x  - _tam, _posicao.y + _tam);
+     triangle(_tam, 0, -_tam, _tam, -_tam, -_tam);
+      popMatrix();
    }
    
    public void atualizaPosicao(int x, int y) {
@@ -47,6 +52,14 @@ class Nave {
    
    public void freia(){
      if (_velocidade > 0) _velocidade--;
+   }
+   
+   public void giraSentidoAntiHorario(){
+     _direcao.rotate(-PI/16);
+   }
+   
+   public void giraSentidoHorario(){
+     _direcao.rotate(-PI/16);
    }
    
  }
